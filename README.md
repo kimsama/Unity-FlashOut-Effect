@@ -27,13 +27,15 @@ Shader "Custom/DiffuseFlash"
 		LOD 200
 
 		Cull Off
+        
+        //any other setting if it needs...
+
 		Blend One OneMinusSrcAlpha
 
 		Pass
 		{
 	
 			CGPROGRAM
-			//#pragma surface surf Lambert
 			#pragma vertex vert
 			#pragma fragment frag
 			#include "UnityCG.cginc"
