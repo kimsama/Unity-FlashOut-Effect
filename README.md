@@ -10,7 +10,7 @@ RPG 게임에서 그림과 같이 피격시 데미지 효과 처리를 위해 �
 Flash 효과 셰이더 
 -----------------
 
-Unity의 Diffuse 셰이더 코드를 아래와 같이 _FlashColor 및 _FlashAmount 프로퍼티를 가지도록 수정한다.
+Unity의 Diffuse 셰이더 코드를 아래와 같이 *_FlashColor* 및 *_FlashAmount* 프로퍼티를 가지도록 수정한다.
 
 ```glsl
 Shader "Custom/DiffuseFlash" 
@@ -85,7 +85,7 @@ Shader "Custom/DiffuseFlash"
 }
 ```
 
-Fragment 셰이더에서 lerp 함수를 사용해서 설정된 _FlashAmount값에 따라 원본 텍스쳐의 색상값을 사용할 지, _FlashColor에 설정된 색상을 사용할지를 결정한다. _FlashAmount 값이 0이면 완전한 원본 텍스쳐 색상을 사용, 1이면 _FlashColor에 설정된 색상으로 픽셀값을 결정한다.
+Fragment 셰이더에서 lerp 함수를 사용해서 설정된 _FlashAmount값에 따라 원본 텍스쳐의 색상값을 사용할 지, *_FlashColor*에 설정된 색상을 사용할지를 결정한다. *_FlashAmount* 값이 0이면 완전한 원본 텍스쳐 색상을 사용, 1이면 *_FlashColor*에 설정된 색상으로 픽셀값을 결정한다.
 
 ```glsl
 	fixed4 frag (v2f IN) : COLOR
@@ -119,9 +119,9 @@ Flash-out 효과는 C# 코드에서 tween 애니메이션을 이용해서 손쉽
 
 ```
 
-DOTween.To() 함수의 호출은 0.1초 동안 amount 멤버 변수의 값을 0에서 0.75로 변경한다. amount 멤버 변수값을 매 Update 마다  ```Material.SetFloat()``` 함수를 시용해서 셰이더쪽에 적용하면 그림에서와 같은 효과가 나타난다. 
+```DOTween.To()``` 함수의 호출은 0.1초 동안 amount 멤버 변수의 값을 0에서 0.75로 변경한다. amount 멤버 변수값을 매 Update 마다  ```Material.SetFloat()``` 함수를 시용해서 셰이더쪽에 적용하면 그림에서와 같은 효과가 나타난다. 
 
-깜박이는 효과를 위해 LoopType을 Yoyo로 설정하고 yoyo 처리를 위해서는 loop 회수가 깜박임 회수의 2배가 되도록 설정해야 한다. 
+깜박이는 효과를 위해 ```LoopType```을 Yoyo로 설정하고 yoyo 처리를 위해서는 loop 회수가 깜박임 회수의 2배가 되도록 설정해야 한다. 
 
 
 *(c)2015 Kim, Hyoun Woo*
