@@ -87,7 +87,7 @@ Shader "Custom/DiffuseFlash"
 
 Fragment 셰이더에서 lerp 함수를 사용해서 설정된 _FlashAmount값에 따라 원본 텍스쳐의 색상값을 사용할 지, _FlashColor에 설정된 색상을 사용할지를 결정한다. _FlashAmount 값이 0이면 완전한 원본 텍스쳐 색상을 사용, 1이면 _FlashColor에 설정된 색상으로 픽셀값을 결정한다.
 
-```
+```glsl
 	fixed4 frag (v2f IN) : COLOR
 	{
 		fixed4 c = tex2D (_MainTex, IN.texcoord) * IN.color;
