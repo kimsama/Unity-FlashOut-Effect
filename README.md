@@ -1,16 +1,16 @@
-# FlashOut Effect
+# FlashOut 이펙트
 
-Unity3D shader and tween animation howto for flashing out effect on a 3D model.
+RPG 게임에서 그림과 같이 피격시 데미지 효과 처리를 위해 사용하는 플래쉬 효과를 위한 셰이더와 트위닝 애니메이션에 대한 설명입니다. 
 
 
 <p align="center">
-  <img src="https://github.com/kimsama/Unity-FlashOut-Effect/blob/master/image/flashout_shader.gif?raw=true" alt="TweenSlider"/>
+  <img src="https://github.com/kimsama/Unity-FlashOut-Effect/blob/master/image/flashout_shader.gif?raw=true" alt="FlashOutEffect"/>
 </p>
 
 Flash 효과 셰이더 
 -----------------
 
-Unity의 Diffuse 셰이더 코드를 아래와 같이 _FlashColor 및 _FlashAmount 프로퍼티를 가지도록 수정.
+Unity의 Diffuse 셰이더 코드를 아래와 같이 _FlashColor 및 _FlashAmount 프로퍼티를 가지도록 수정한다.
 
 ```
 Shader "Custom/DiffuseFlash" 
@@ -83,7 +83,7 @@ Shader "Custom/DiffuseFlash"
 }
 ```
 
-Fragment 셰이더에서 lerp 함수를 사용해서 설정된 _FlashAmount값에 따라 원본 텍스쳐의 색상값을 사용할 지, _FlashColor에 설정된 색상을 사용할지를 결정하는 부분이 핵심.
+Fragment 셰이더에서 lerp 함수를 사용해서 설정된 _FlashAmount값에 따라 원본 텍스쳐의 색상값을 사용할 지, _FlashColor에 설정된 색상을 사용할지를 결정한다. _FlashAmount 값이 0이면 완전한 원본 텍스쳐 색상을 사용, 1이면 _FlashColor에 설정된 색상으로 픽셀값을 결정한다.
 
 ```
 	fixed4 frag (v2f IN) : COLOR
@@ -99,17 +99,25 @@ Fragment 셰이더에서 lerp 함수를 사용해서 설정된 _FlashAmount값�
 Tween 애니메이션
 ----------------
 
-Flash-out 효과는 C# 코드에서 tween 애니메이션을 이용해서 설정. Tween 애니메이션은 [DOTween](http://dotween.demigiant.com/index.php)을 이용.
+Flash-out 효과는 C# 코드에서 tween 애니메이션을 이용해서 손쉽게 설정할 수 있다. 여기에서는 Tween 애니메이션으로 [DOTween](http://dotween.demigiant.com/index.php)을 이용한다.
 
 ```csharp
+    using DG.Tweening;
+
+    ...
+
 	float amount = 0f;
 	int blinkCount = 2; // 두 번 연속으로 flash-out
 
     ...
-    
+
     Tweener tweener = DOTween.To(() => amount, x => amount = x, 0.75f, 0.1f);
     tweener.OnUpdate(() => { mat.SetFloat("_FlashAmount", amount); });
     tweener.SetLoops(blinkCount * 2, LoopType.Yoyo).SetEase(Ease.InOutQuad);
 
 ```
+
+_FlashColor 값에 설정된 색상값으로 tween 애니메이션하면서 변경된 값을 Material.SetFloat() 함수를 시용해서 셰이더쪽에 적용하면 그림에서와 같은 효과가 나타난다. 
+
+깜박이는 효과를 위해 LoopType을 Yoyo로 설정하고 yoyo 처리를 위해서는 loop 회수가 깜박임 회수의 2배가 되도록 설정해야 한다. 
 
