@@ -123,3 +123,7 @@ _FlashColor 값에 설정된 색상값으로 tween 애니메이션하면서 변�
 
 깜박이는 효과를 위해 LoopType을 Yoyo로 설정하고 yoyo 처리를 위해서는 loop 회수가 깜박임 회수의 2배가 되도록 설정해야 한다. 
 
+
+(c)2015 Kim, Hyoun Woo
+
+Note: The model used for the image borrowed from Torchlight, Runic Games.
