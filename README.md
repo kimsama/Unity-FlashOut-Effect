@@ -12,7 +12,7 @@ Flash 효과 셰이더
 
 Unity의 Diffuse 셰이더 코드를 아래와 같이 _FlashColor 및 _FlashAmount 프로퍼티를 가지도록 수정한다.
 
-```
+```glsl
 Shader "Custom/DiffuseFlash" 
 {
 	Properties {		
