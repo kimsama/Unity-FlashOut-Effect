@@ -119,7 +119,7 @@ Flash-out 효과는 C# 코드에서 tween 애니메이션을 이용해서 손쉽
 
 ```
 
-DOTween.To() 함수의 호출은 0.1초 동안 amount 멤버 변수의 값을 0에서 0.75로 변경한다. amount 멤버 변수값을 매 Update 마다  Material.SetFloat() 함수를 시용해서 셰이더쪽에 적용하면 그림에서와 같은 효과가 나타난다. 
+DOTween.To() 함수의 호출은 0.1초 동안 amount 멤버 변수의 값을 0에서 0.75로 변경한다. amount 멤버 변수값을 매 Update 마다  ```Material.SetFloat()``` 함수를 시용해서 셰이더쪽에 적용하면 그림에서와 같은 효과가 나타난다. 
 
 깜박이는 효과를 위해 LoopType을 Yoyo로 설정하고 yoyo 처리를 위해서는 loop 회수가 깜박임 회수의 2배가 되도록 설정해야 한다. 
 
